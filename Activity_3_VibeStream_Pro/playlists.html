@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VibeStream Pro - Playlists</title>
+    <style>
+        body { background-color: #1a1a1a; color: white; font-family: Arial; margin: 0; }
+        .sidebar { width: 200px; background-color: #000; height: 100vh; float: left; border-right: 2px solid #9d4edd; padding: 20px; box-sizing: border-box; }
+        .menu-item { padding: 12px; margin: 8px 0; background-color: #222; border-radius: 5px; text-decoration: none; display: block; color: white; transition: 0.3s; }
+        .menu-item:hover { background-color: #9d4edd; padding-left: 20px; }
+        .active { background-color: #9d4edd; }
+        .main { margin-left: 200px; padding: 40px; }
+        .p-box { 
+            background-color: #222; width: 150px; padding: 20px; float: left; margin: 10px; 
+            border: 1px solid #9d4edd; border-radius: 10px; text-align: center; transition: 0.4s;
+        }
+        .p-box:hover { background-color: #9d4edd; transform: rotate(3deg) scale(1.1); }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2 style="color:#9d4edd">VibeStream Pro</h2>
+        <a href="home.html" class="menu-item">Home</a>
+        <a href="music.html" class="menu-item">Music Library</a>
+        <a href="playlists.html" class="menu-item active">Playlists</a>
+        <a href="settings.html" class="menu-item">Settings</a>
+        <a href="Login.html" class="menu-item">Log Out</a>
+    </div>
+    <div class="main">
+        <h1>Rock Division</h1>
+        <div class="p-box" onclick="location.href='music.html'">Pierce The Veil</div>
+       
+    </div>
+</body>
+</html>

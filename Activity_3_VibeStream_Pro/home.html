@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VibeStream Pro - Home</title>
+    <style>
+        body { background-color: #1a1a1a; color: white; font-family: Arial; margin: 0; }
+        .sidebar { width: 200px; background-color: #000; height: 100vh; float: left; border-right: 2px solid #9d4edd; padding: 20px; box-sizing: border-box; }
+        .menu-item { 
+            padding: 12px; margin: 8px 0; background-color: #222; border-radius: 5px; 
+            text-decoration: none; display: block; color: white; transition: 0.3s;
+        }
+        .menu-item:hover { background-color: #9d4edd; padding-left: 20px; } /* Slides to the right on hover */
+        .active { background-color: #9d4edd; }
+        .main { margin-left: 200px; padding: 50px; text-align: center; }
+        .welcome-box { 
+            display: inline-block; padding: 20px; background: #222; border-radius: 15px; 
+            border: 1px solid #9d4edd; transition: 0.3s;
+        }
+        .welcome-box:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(157,78,221,0.3); }
+        .welcome-img { width: 180px; border-radius: 50%; border: 3px solid #9d4edd; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2 style="color:#9d4edd">VibeStream Pro</h2>
+        <a href="home.html" class="menu-item active">Home</a>
+        <a href="music.html" class="menu-item">Music Library</a>
+        <a href="playlists.html" class="menu-item">Playlists</a>
+        <a href="settings.html" class="menu-item">Settings</a>
+        <a href="Login.html" class="menu-item">Log Out</a>
+    </div>
+    <div class="main">
+        <div class="welcome-box">
+            <img src="Image_20260212_002545_039.png" class="welcome-img">
+            <h1>Welcome!</h1>
+            <p>Ready to listen to some Rock?</p>
+        </div>
+    </div>
+</body>
+</html>
