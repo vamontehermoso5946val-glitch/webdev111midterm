@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rooms | Luna Vista Resort</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f4f4; }
+        .header { background-color: #002366; color: white; padding: 20px 50px; overflow: hidden; border-bottom: 5px solid #d4af37; }
+        .logo { float: left; margin: 0; }
+        .nav { float: right; margin-top: 15px; }
+        .nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; }
+
+        .container { padding: 40px; }
+        .room-card { background: white; margin: 20px auto; width: 70%; display: flex; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); animation: slideUp 1s; }
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .room-card img { width: 300px; height: 200px; object-fit: cover; }
+        .details { padding: 20px; }
+        .price { font-size: 20px; color: #2e7d32; font-weight: bold; }
+        .book-link { color: #002366; font-weight: bold; text-decoration: none; border: 1px solid #002366; padding: 5px 10px; border-radius: 4px; }
+        .book-link:hover { background: #002366; color: white; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="logo"> Luna Vista Rooms</h1>
+        <div class="nav">
+            <a href="home.html">Home</a>
+            <a href="rooms.html">Rooms</a>
+			<a href="foods.html">Dining</a>
+            <a href="booking.html">Book Now</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400">
+            <div class="details">
+                <h3>Standard Room</h3>
+                <p>Cozy space with a queen bed and free breakfast.</p>
+                <p class="price">$120 / Night</p>
+                <a href="booking.html" class="book-link">Reserve This</a>
+            </div>
+        </div>
+        <div class="room-card">
+            <img src="https://assets.anantara.com/image/upload/q_auto,f_auto,c_limit,w_1045/media/minor/anantara/images/anantara-uluwatu-bali-resort/accommodation/details-page/ocean-view-suite/anantara_uluwatu_ocean_view_suite_01_intro_944x510.jpg">
+            <div class="details">
+                <h3>Ocean View Suite</h3>
+                <p>Panoramic views of the sea with a private balcony.</p>
+                <p class="price">$250 / Night</p>
+                <a href="booking.html" class="book-link">Reserve This</a>
+            </div>
+        </div>
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400">
+            <div class="details">
+                <h3>Deluxe Villa</h3>
+                <p>The ultimate luxury. 2 bedrooms and a private pool.</p>
+                <p class="price">$450 / Night</p>
+                <a href="booking.html" class="book-link">Reserve This</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

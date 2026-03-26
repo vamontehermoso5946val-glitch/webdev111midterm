@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Now | Luna Vista Resort</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #002366; color: white; }
+        .header { background-color: white; color: #002366; padding: 20px 50px; overflow: hidden; border-bottom: 5px solid #d4af37; }
+        .logo { float: left; margin: 0; }
+        .nav { float: right; margin-top: 15px; }
+        .nav a { color: #002366; text-decoration: none; margin-left: 20px; font-weight: bold; }
+
+        .form-box { background: white; color: black; width: 400px; margin: 50px auto; padding: 30px; border-radius: 10px; }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+        .submit-btn { background: #d4af37; color: black; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 5px; }
+        .submit-btn:hover { background: #b8962e; transform: scale(1.02); transition: 0.2s; }
+    </style>
+    <script>
+        function processBooking() {
+            var name = document.getElementById('name').value;
+            var room = document.getElementById('room').value;
+            if(name == "") { alert("Please enter your name!"); return; }
+            
+            // Saving data to the receipt so it can read it
+            localStorage.setItem('guestName', name);
+            localStorage.setItem('roomType', room);
+            
+            window.location.href = "reciept.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1 class="logo"> Book Your Stay</h1>
+        <div class="nav">
+            <a href="home.html">Home</a>
+            <a href="rooms.html">Rooms</a>
+			<a href="foods.html">Dining</a>
+            <a href="bookings.html">Book Now</a>
+        </div>
+    </div>
+
+    <div class="form-box">
+        <label>Full Name:</label>
+        <input type="text" id="name" placeholder="John Doe">
+        
+        <label>Select Room:</label>
+        <select id="room">
+            <option>Standard Room ($120)</option>
+            <option>Ocean View Suite ($250)</option>
+            <option>Deluxe Villa ($450)</option>
+        </select>
+
+        <label>Check-in Date:</label>
+        <input type="date">
+
+        <button type="button" class="submit-btn" onclick="processBooking()">CONFIRM RESERVATION</button>
+    </div>
+</body>
+</html>
