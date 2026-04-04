@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt | Velvet Crust Cakes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .receipt-card {
+            background: #fff;
+            width: 350px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 2px;
+            position: relative;
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+
+        /* Decorative top stripe */
+        .receipt-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: #ffb6c1; /* Soft pink signature color */
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            margin: 0;
+            letter-spacing: 2px;
+            color: #d63384;
+        }
+
+        .header p {
+            margin: 5px 0;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px dashed #ccc;
+            margin: 15px 0;
+        }
+
+        .details p {
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+
+        .total-section {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background: #fffafa;
+            border: 1px dashed #ffb6c1;
+        }
+
+        .total-section h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #d63384;
+        }
+
+        .actions {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .print-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .print-btn:hover {
+            background: #d63384;
+        }
+
+        .history-link {
+            display: block;
+            margin-top: 15px;
+            font-family: sans-serif;
+            font-size: 0.75rem;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .history-link:hover {
+            text-decoration: underline;
+        }
+
+        @media print {
+            body { background: white; }
+            .receipt-card { box-shadow: none; border: 1px solid #eee; margin: 0; }
+            .actions, .navbar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="receipt-card">
+        <div class="header">
+            <h2>VELVET CRUST</h2>
+            <p>Freshly Baked Student Projects</p>
+        </div>
+        
+        <hr>
+
+        <div class="details">
+            <p><span>Order Number:</span> <span id="rID"></span></p>
+            <p><span>Date & Time:</span> <span id="rDate"></span></p>
+            <p><span>Customer:</span> <span id="rName"></span></p>
+            <p><span>Method:</span> <span id="rMethod"></span></p>
+        </div>
+
+        <hr>
+
+        <div class="total-section">
+            <p style="margin-bottom: 5px; font-size: 0.7rem;">TOTAL AMOUNT PAID</p>
+            <h3 id="rTotal"></h3>
+        </div>
+
+        <p style="text-align: center; font-size: 0.7rem; color: #999;">
+            Thank you for supporting our bakery!<br>
+            Please show this for <span id="methodText"></span>.
+        </p>
+
+        <div class="actions">
+            <button class="print-btn" onclick="window.print()">PRINT RECEIPT</button>
+            <a href="saved_orders.html" class="history-link">View Order History →</a>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        
+        // Populate fields
+        document.getElementById('rName').innerText = params.get('name') || "Guest";
+        document.getElementById('rMethod').innerText = params.get('method') || "Pickup";
+        document.getElementById('rTotal').innerText = params.get('total') || "$0.00";
+        
+        // Get the specific time from URL, otherwise fallback to current time
+        const timeParam = params.get('time');
+        document.getElementById('rDate').innerText = timeParam ? decodeURIComponent(timeParam) : new Date().toLocaleString();
+        
+        // Generate a quick random ID for the receipt look
+        document.getElementById('rID').innerText = "#" + Math.floor(100000 + Math.random() * 900000);
+        
+        // Update helper text
+        const method = params.get('method');
+        document.getElementById('methodText').innerText = (method === "Pickup") ? "in-store pickup" : "home delivery";
+    </script>
+
+</body>
+</html>
