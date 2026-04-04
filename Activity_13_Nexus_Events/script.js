@@ -231,3 +231,34 @@ function loadAdminStats() {
     if(statSold) statSold.innerText = totalTickets;
     if(txBody) txBody.innerHTML = html || '<tr><td colspan="4">No sales recorded.</td></tr>';
 }
+/* ==========================================
+   5. PASSWORD RECOVERY LOGIC
+   ========================================== */
+
+const forgotForm = document.getElementById('forgotForm');
+if (forgotForm) {
+    forgotForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const emailInput = document.getElementById('forgotEmail').value.trim().toLowerCase();
+        const newPassword = document.getElementById('newPass').value;
+
+        // 1. Get the current user from storage
+        const savedAccount = JSON.parse(localStorage.getItem('nexusUser'));
+
+        // 2. Check if the account exists and email matches
+        if (savedAccount && savedAccount.email === emailInput) {
+            // 3. Update the password in the object
+            savedAccount.password = newPassword;
+
+            // 4. Save the updated object back to localStorage
+            localStorage.setItem('nexusUser', JSON.stringify(savedAccount));
+
+            alert('Password updated successfully! You can now log in with your new password.');
+            window.location.href = 'index.html'; // Redirect back to home/login
+        } else {
+            // Error if email doesn't match or no account exists
+            alert('Error: No registered account found with that email address.');
+        }
+    });
+}
