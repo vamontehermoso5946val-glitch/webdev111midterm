@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HealthSync | Clinical History</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Trust-Blue Theme Variables */
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --dark: #0f172a;
+            --text-muted: #64748b;
+            --light-bg: #f8fafc;
+            --border: #e2e8f0;
+        }
+
+        body {
+            background-color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* History Page Specific Styles */
+        .history-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            align-items: center;
+        }
+        .search-input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .search-input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .history-table th {
+            text-align: left;
+            padding: 15px;
+            background: var(--light-bg);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--border);
+            letter-spacing: 0.5px;
+        }
+        .history-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+            color: var(--dark);
+        }
+        .record-type {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: block;
+        }
+        .status-tag {
+            background: #dcfce7;
+            color: #166534;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Verified Badge Styling */
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            background: var(--primary);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            margin-left: 5px;
+            text-transform: uppercase;
+        }
+
+        /* Nav Link Active State */
+        .nav-item.active {
+            color: var(--primary) !important;
+            border-bottom: 2px solid var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+   <nav class="navbar">
+    <div class="logo">HEALTHSYNC</div>
+    <div class="nav-links">
+        <a href="index.html" class="nav-item">Book Appointment</a>
+        <a href="staff_portal.html" class="nav-item">Staff Portal</a>
+        <a href="clinical_history.html" class="nav-item active">Clinical History</a>
+    </div>
+    <div class="authSection">
+        <button onclick="location.href='login.html'" class="btn btn-outline">Logout</button>
+    </div>
+</nav>
+
+    <main>
+        <div class="card" style="border-top: 4px solid var(--primary);">
+            <div style="margin-bottom: 30px;">
+                <h2 style="margin: 0; color: var(--dark);">Medical Records</h2>
+                <p style="color: var(--text-muted); margin-top: 5px;">Access your past consultations, digital prescriptions, and lab results.</p>
+            </div>
+
+            <div class="history-controls">
+                <input type="text" class="search-input" placeholder="Search by doctor or specialty...">
+                <select style="padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: white; color: var(--dark);">
+                    <option>All Records</option>
+                    <option>Consultations</option>
+                    <option>Lab Results</option>
+                </select>
+            </div>
+
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Visit Date</th>
+                        <th>Department / Doctor</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Oct 24, 2025</strong></td>
+                        <td>
+                            <span style="display: block; font-weight: 600;">Cardiology</span>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">Dr. Smith</span>
+                        </td>
+                        <td><span class="record-type">Annual Checkup</span></td>
+                        <td><span class="status-tag">Completed</span></td>
+                        <td>
+                            <a href="view_record.html" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem; display: inline-flex; align-items: center;">
+                                View PDF <span class="verified-badge">✓ Verified</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Aug 12, 2025</strong></td>
+                        <td>
+                            <span style="display: block; font-weight: 600;">General Medicine</span>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">Dr. Adams</span>
+                        </td>
+                        <td><span class="record-type">Lab Result</span></td>
+                        <td><span class="status-tag">Completed</span></td>
+                        <td>
+                            <a href="view_record2.html" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem; display: inline-flex; align-items: center;">
+                                View PDF <span class="verified-badge">✓ Verified</span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script>
+        // Session Guard
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+
+        // Logout Logic
+        function logoutUser() {
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

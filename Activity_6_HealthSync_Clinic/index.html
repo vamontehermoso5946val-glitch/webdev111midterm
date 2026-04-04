@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HealthSync | Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Trust-Blue Theme Overrides */
+        :root {
+            --primary: #2563eb;       /* Trust Blue */
+            --primary-hover: #1d4ed8;
+            --success: #10b981;       /* For Verified Badge */
+            --dark: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        body {
+            background-color: #ffffff; 
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Stepper Blue Theme */
+        .step.active { 
+            color: var(--primary); 
+            font-weight: 700;
+        }
+        .step.active::before { 
+            background: var(--primary); 
+            border-color: var(--primary); 
+        }
+
+        /* Verified Badge Styling */
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 99px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-left: 10px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        /* Input focus color */
+        input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo" style="color: var(--primary); font-weight: 800;">HEALTHSYNC </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-item active">Book Appointment</a>
+            <a href="staff_portal.html" class="nav-item">Staff Portal</a>
+            <a href="clinical_history.html" class="nav-item">Clinical History</a>
+        </div>
+        <div class="authSection">
+            <button onclick="logoutUser()" class="btn btn-outline">Logout</button>
+        </div>
+    </nav>
+
+    <main>
+        <div class="card" style="border-top: 4px solid var(--primary); margin-top: 40px;">
+            <div class="stepper">
+                <div class="step active">IDENTITY</div>
+                <div class="step">SPECIALTY</div>
+                <div class="step">SCHEDULE</div>
+                <div class="step">FINISH</div>
+            </div>
+            
+            <h2 style="margin-top:0; color: var(--dark); font-weight: 800;">Personal Information</h2>
+            <p style="color:var(--text-muted); margin-bottom: 30px;">Please enter your legal details to secure your appointment.</p>
+            
+            <form onsubmit="event.preventDefault(); location.href='specialty.html';">
+                <div class="grid">
+                    <div class="field"><label>First Name</label><input type="text" placeholder="John" required></div>
+                    <div class="field"><label>Last Name</label><input type="text" placeholder="Doe" required></div>
+                    <div class="field"><label>Appointment Date</label><input type="date" id="appointmentDate" required></div>
+                    
+                    <div class="field">
+                        <label>Phone</label>
+                        <input type="text" 
+                               placeholder="+63..." 
+                               required 
+                               oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    </div>
+
+                    <div class="field full"><label>Email</label><input type="email" placeholder="email@example.com" required></div>
+                </div>
+                
+                <div style="margin-top: 40px; display: flex; justify-content: flex-end; align-items: center;">
+                    <button type="submit" class="btn btn-primary" style="display: flex; align-items: center; padding: 12px 24px; font-weight: 700;">
+                        Next Step 
+                        <span class="verified-badge">✓ Verified</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('appointmentDate').setAttribute('min', today);
+
+        function logoutUser() {
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html'; 
+        }
+    </script>
+</body>
+</html>

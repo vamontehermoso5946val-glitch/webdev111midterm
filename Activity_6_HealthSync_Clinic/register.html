@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthSync | Create Account</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Trust-Blue Theme Variables */
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --dark: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 550px;
+            animation: fadeIn 0.5s ease-out;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid var(--primary); /* Professional Theme Accent */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: 1px;
+            font-size: 1.2rem;
+        }
+
+        .register-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        /* Verified Badge Styling */
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 99px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-left: 10px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Responsive Grid */
+        @media (max-width: 480px) {
+            .register-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-card">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div class="logo" style="margin-bottom: 10px;">HEALTHSYNC</div>
+            <h2 style="margin: 0; color: var(--dark);">Create Your Account</h2>
+            <p style="color: var(--text-muted); margin-top: 8px;">Join our community for better health management.</p>
+        </div>
+
+        <form id="registerForm">
+            <div class="register-grid">
+                <div class="field">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.85rem;">First Name</label>
+                    <input type="text" id="fname" placeholder="John" required 
+                           style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; box-sizing: border-box;">
+                </div>
+                <div class="field">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.85rem;">Last Name</label>
+                    <input type="text" id="lname" placeholder="Doe" required 
+                           style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; box-sizing: border-box;">
+                </div>
+                <div class="field full-width">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.85rem;">Email Address</label>
+                    <input type="email" id="email" placeholder="john.doe@example.com" required 
+                           style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; box-sizing: border-box;">
+                </div>
+                <div class="field">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.85rem;">Password</label>
+                    <input type="password" id="pass" placeholder="••••••••" required 
+                           style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; box-sizing: border-box;">
+                </div>
+                <div class="field">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.85rem;">Confirm Password</label>
+                    <input type="password" id="confirmPass" placeholder="••••••••" required 
+                           style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; box-sizing: border-box;">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 30px; padding: 14px; display: flex; align-items: center; justify-content: center;">
+                Register Now
+                <span class="verified-badge">✓ Verified</span>
+            </button>
+            
+            <p style="text-align: center; font-size: 0.9rem; margin-top: 25px; color: var(--text-muted);">
+                Already have an account? <a href="login.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Log in here</a>
+            </p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('pass').value;
+            const confirm = document.getElementById('confirmPass').value;
+
+            if (pass !== confirm) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            // Get existing users or empty array
+            let users = JSON.parse(localStorage.getItem('healthSyncUsers')) || [];
+
+            // Check if user already exists
+            if (users.find(u => u.email === email)) {
+                alert("An account with this email already exists!");
+                return;
+            }
+
+            // Save new user
+            users.push({ email: email, password: pass });
+            localStorage.setItem('healthSyncUsers', JSON.stringify(users));
+
+            alert("Registration Successful! You can now log in.");
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

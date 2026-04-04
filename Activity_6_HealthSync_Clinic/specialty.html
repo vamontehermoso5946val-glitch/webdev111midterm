@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HealthSync | Specialty</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Trust-Blue Theme Variables */
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --dark: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            background-color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .option-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+            gap: 15px; 
+        }
+
+        .choice { 
+            border: 1px solid var(--border); 
+            padding: 25px 20px; 
+            border-radius: 12px; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        /* Professional Blue Hover */
+        .choice:hover { 
+            border-color: var(--primary); 
+            background: #eff6ff; 
+            transform: translateY(-2px);
+        }
+
+        /* Trust-Blue Selected State */
+        .choice.selected { 
+            background: var(--primary) !important; 
+            color: white !important; 
+            border-color: var(--primary); 
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .choice h4 { margin: 0; font-weight: 600; }
+
+        /* Stepper Blue Theme */
+        .step.active { color: var(--primary); }
+        .step.active::before { background: var(--primary); border-color: var(--primary); }
+
+        /* Verified Badge Styling */
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 99px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-left: 10px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+    <div class="logo">HEALTHSYNC</div>
+    <div class="nav-links">
+        <a href="index.html" class="nav-item active">Book Appointment</a>
+        <a href="staff_portal.html" class="nav-item">Staff Portal</a>
+        <a href="clinical_history.html" class="nav-item">Clinical History</a>
+    </div>
+    <div class="authSection">
+        <button onclick="location.href='login.html'" class="btn btn-outline">Logout</button>
+    </div>
+</nav>
+
+    <main>
+        <div class="card" style="border-top: 4px solid var(--primary);">
+            <div class="stepper">
+                <div class="step active">IDENTITY</div>
+                <div class="step active">SPECIALTY</div>
+                <div class="step">SCHEDULE</div>
+                <div class="step">FINISH</div>
+            </div>
+
+            <h2 style="color: var(--dark);">Medical Specialty</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px;">Select the department for your consultation.</p>
+
+            <div class="option-grid">
+                <div class="choice" onclick="select(this)"><h4>General</h4></div>
+                <div class="choice" onclick="select(this)"><h4>Pediatrics</h4></div>
+                <div class="choice" onclick="select(this)"><h4>Cardiology</h4></div>
+                <div class="choice" onclick="select(this)"><h4>Dermatology</h4></div>
+            </div>
+
+            <div style="margin-top: 40px; display: flex; justify-content: space-between; align-items: center;">
+                <button class="btn btn-outline" onclick="history.back()">Back</button>
+                <button class="btn btn-primary" onclick="validateAndContinue()" style="display: flex; align-items: center;">
+                    Continue 
+                    <span class="verified-badge">✓ Verified</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function select(el) {
+            document.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+
+        function validateAndContinue() {
+            const isSelected = document.querySelector('.choice.selected');
+
+            if (isSelected) {
+                localStorage.setItem('selectedSpecialty', isSelected.innerText);
+                window.location.href = 'schedule.html';
+            } else {
+                alert("Please select a medical specialty to continue.");
+            }
+        }
+    </script>
+</body>
+</html>

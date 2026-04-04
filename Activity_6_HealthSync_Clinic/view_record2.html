@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HealthSync | Medical Record</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Trust-Blue Theme Variables */
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --dark: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --light-bg: #f8fafc;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+        }
+
+        /* Document Card Styling */
+        .record-card {
+            background: white;
+            padding: 60px;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 850px;
+            margin: 40px auto;
+            border: 1px solid var(--border);
+            position: relative;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        /* Professional Watermark */
+        .record-card::after {
+            content: "OFFICIAL MEDICAL RECORD";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 3.5rem;
+            color: rgba(37, 99, 235, 0.03); 
+            pointer-events: none;
+            white-space: nowrap;
+            font-weight: 900;
+            z-index: 0;
+        }
+
+        .record-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .record-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 4px solid var(--primary);
+            padding-bottom: 25px;
+            margin-bottom: 45px;
+        }
+
+        .section-title {
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background: var(--border);
+            margin-left: 15px;
+        }
+
+        .vitals-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .vital-card {
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+        }
+        .vital-card small { 
+            color: var(--text-muted); 
+            font-weight: 700; 
+            font-size: 0.65rem;
+            text-transform: uppercase;
+        }
+        .vital-card p { margin: 5px 0 0 0; font-size: 1.2rem; color: var(--dark); }
+
+        .signature-area {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Print formatting */
+        @media print {
+            .navbar, .action-bar, .authSection { display: none !important; }
+            body { background: white; padding: 0; }
+            .record-card { 
+                border: none; 
+                box-shadow: none; 
+                padding: 0; 
+                margin: 0;
+                width: 100%; 
+                max-width: 100%; 
+            }
+            .record-card::after { color: rgba(0, 0, 0, 0.02); }
+            main { padding: 0; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo" style="color: var(--primary); font-weight: 800;">HEALTHSYNC</div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-item">Book Appointment</a>
+            <a href="staff_portal.html" class="nav-item">Staff Portal</a>
+            <a href="clinical_history.html" class="nav-item active">Clinical History</a>
+        </div>
+        <div class="authSection">
+            <button onclick="location.href='clinical_history.html'" class="btn btn-outline">Back to History</button>
+        </div>
+    </nav>
+
+    <main>
+        <div class="action-bar" style="max-width: 850px; margin: 20px auto; display: flex; justify-content: flex-end; gap: 10px; padding: 0 20px;">
+            <button class="btn btn-outline" onclick="window.print()" style="font-weight: 600;">Print Record</button>
+            <button class="btn btn-primary" onclick="location.href='clinical_history.html'" style="font-weight: 600;">Return to History</button>
+        </div>
+
+        <div class="record-card">
+            <div class="record-content">
+                <div class="record-header">
+                    <div>
+                        <div class="logo" style="font-size: 1.1rem; color: var(--primary); font-weight: 800; letter-spacing: 1px;">HEALTHSYNC CLINIC</div>
+                        <h1 style="margin: 8px 0 0 0; font-size: 2.2rem; font-weight: 800; color: var(--dark);">Clinical Summary</h1>
+                        <p style="color: var(--text-muted); margin: 8px 0 0 0; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; font-weight: 700;">Ref: #HS-AUG-2025-012</p>
+                    </div>
+                    <div style="text-align: right; font-size: 0.9rem; line-height: 1.8; color: var(--dark);">
+                        <p><strong>Date:</strong> Aug 12, 2025</p>
+                        <p><strong>Attending:</strong> Dr. William Adams</p>
+                        <p><strong>Department:</strong> General Medicine</p>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <div class="section-title">Patient Vitals</div>
+                    <div class="vitals-row">
+                        <div class="vital-card">
+                            <small>Blood Pressure</small>
+                            <p><strong>120/80</strong> <span style="font-size: 0.75rem; color: var(--text-muted);">mmHg</span></p>
+                        </div>
+                        <div class="vital-card">
+                            <small>Heart Rate</small>
+                            <p><strong>70</strong> <span style="font-size: 0.75rem; color: var(--text-muted);">BPM</span></p>
+                        </div>
+                        <div class="vital-card">
+                            <small>Temperature</small>
+                            <p><strong>36.6</strong> <span style="font-size: 0.75rem; color: var(--text-muted);">°C</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-section" style="margin-bottom: 45px;">
+                    <div class="section-title">Diagnosis & Assessment</div>
+                    <div style="background: var(--light-bg); border: 1px solid var(--border); padding: 25px; border-radius: 8px; line-height: 1.7; border-left: 5px solid var(--primary);">
+                        <p style="margin: 0; color: var(--dark);">
+                            Patient presented for a routine general medicine consultation. Reported symptoms include mild chest discomfort and occasional fatigue over the last two weeks. 
+                            Initial assessment indicates a stable sinus rhythm and normal physical findings. 
+                            Recommended immediate lifestyle adjustments and a follow-up review in three months to monitor progress.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <div class="section-title">Prescriptions</div>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                        <thead>
+                            <tr style="text-align: left; background: var(--light-bg);">
+                                <th style="padding: 15px; font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); border-bottom: 2px solid var(--border);">Medication</th>
+                                <th style="padding: 15px; font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); border-bottom: 2px solid var(--border);">Dosage</th>
+                                <th style="padding: 15px; font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); border-bottom: 2px solid var(--border);">Frequency</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 15px; border-bottom: 1px solid var(--border); color: var(--dark);"><strong>Aspirin</strong></td>
+                                <td style="padding: 15px; border-bottom: 1px solid var(--border); color: var(--dark);">81 mg (2 Tablets)</td>
+                                <td style="padding: 15px; border-bottom: 1px solid var(--border); color: var(--dark);">Once daily</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="signature-area">
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">
+                        <p style="font-weight: 700; color: var(--dark); margin: 0;">Digitally signed by Dr. William Adams</p>
+                        <p style="margin-top: 4px;">HealthSync Secure Verification System | AUTH-8821</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 180px; border-bottom: 1px solid var(--dark); margin-bottom: 8px;"></div>
+                        <p style="font-size: 0.7rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin: 0;">Physician Signature</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

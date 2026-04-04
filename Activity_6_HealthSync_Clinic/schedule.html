@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HealthSync | Select Schedule</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Trust-Blue Theme Variables */
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --dark: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            background-color: #f1f5f9; /* Consistent light-grey background */
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Time Slot Grid */
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .time-option {
+            border: 1px solid var(--border);
+            padding: 14px;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            font-weight: 600;
+            color: var(--dark);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        
+        .time-option:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #eff6ff;
+            transform: translateY(-2px);
+        }
+
+        .time-option.selected {
+            background: var(--primary) !important;
+            color: white !important;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Stepper Blue Theme */
+        .step.active { color: var(--primary); font-weight: 700; }
+        .step.active::before { background: var(--primary); border-color: var(--primary); }
+
+        /* Verified Badge Styling */
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 99px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-left: 10px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        input[type="date"] {
+            width: 100%;
+            max-width: 320px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--dark);
+        }
+
+        input[type="date"]:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo" style="color: var(--primary); font-weight: 800;">HEALTHSYNC</div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-item active">Book Appointment</a>
+            <a href="staff_portal.html" class="nav-item">Staff Portal</a>
+            <a href="clinical_history.html" class="nav-item">Clinical History</a>
+        </div>
+        <div class="authSection">
+            <button onclick="logoutUser()" class="btn btn-outline">Logout</button>
+        </div>
+    </nav>
+
+    <main style="display: flex; justify-content: center; padding: 40px 20px;">
+        <div class="card" style="max-width: 650px; border-top: 4px solid var(--primary); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+            <div class="stepper">
+                <div class="step active">IDENTITY</div>
+                <div class="step active">SPECIALTY</div>
+                <div class="step active">SCHEDULE</div>
+                <div class="step">FINISH</div>
+            </div>
+
+            <div style="margin: 30px 0;">
+                <h2 style="margin: 0; color: var(--dark); font-weight: 800;">Select a Date & Time</h2>
+                <p style="color: var(--text-muted); margin-top: 5px;">Choose a slot for your consultation.</p>
+            </div>
+            
+            <form id="scheduleForm">
+                <div class="field" style="margin-bottom: 30px;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: 700; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Preferred Date</label>
+                    <input type="date" id="schedDate" required>
+                </div>
+
+                <div class="field">
+                    <label style="display: block; margin-bottom: 10px; font-weight: 700; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Available Time Slots</label>
+                    <div class="time-grid">
+                        <div class="time-option">09:00 AM</div>
+                        <div class="time-option">10:00 AM</div>
+                        <div class="time-option">11:30 AM</div>
+                        <div class="time-option">01:00 PM</div>
+                        <div class="time-option">02:30 PM</div>
+                        <div class="time-option">04:00 PM</div>
+                    </div>
+                    <input type="hidden" id="selectedTime">
+                </div>
+
+                <div style="margin-top: 40px; display: flex; justify-content: space-between; align-items: center; padding-top: 25px; border-top: 1px solid var(--border);">
+                    <button type="button" class="btn btn-outline" onclick="history.back()" style="font-weight: 600;">Back</button>
+                    <button type="submit" class="btn btn-primary" style="display: flex; align-items: center; padding: 12px 24px; font-weight: 700;">
+                        Confirm & Continue
+                        <span class="verified-badge">✓ Verified</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Set min date to today and default value to today
+        const today = new Date().toISOString().split('T')[0];
+        const dateInput = document.getElementById('schedDate');
+        dateInput.setAttribute('min', today);
+        dateInput.value = today;
+
+        // Handle time selection
+        const options = document.querySelectorAll('.time-option');
+        const hiddenInput = document.getElementById('selectedTime');
+
+        options.forEach(opt => {
+            opt.addEventListener('click', function() {
+                options.forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                hiddenInput.value = this.innerText;
+            });
+        });
+
+        // Validation & Save Logic
+        document.getElementById('scheduleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const dateVal = document.getElementById('schedDate').value;
+            const timeVal = hiddenInput.value;
+
+            if (!timeVal) {
+                alert("Please select an available time slot to proceed.");
+                return;
+            }
+
+            // Save to storage
+            localStorage.setItem('appointmentDate', dateVal);
+            localStorage.setItem('appointmentTime', timeVal);
+            
+            // Redirect to the final page
+            window.location.href = 'finish.html';
+        });
+
+        function logoutUser() {
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
