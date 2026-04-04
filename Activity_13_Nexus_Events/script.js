@@ -134,7 +134,7 @@ if(purchaseForm) {
 
 
 /* ==========================================
-   3. ACCOUNT ACCESS LOGIC (RESTORATION)
+   3. ACCOUNT ACCESS LOGIC
    ========================================== */
 
 // --- Registration ---
@@ -169,6 +169,8 @@ if (loginForm) {
 
         const loginEmail = document.getElementById('loginEmail').value.trim().toLowerCase();
         const loginPass = document.getElementById('loginPass').value;
+        
+        // Re-fetch data from localStorage to get the most updated password
         const savedAccount = JSON.parse(localStorage.getItem('nexusUser'));
 
         if (savedAccount) {
@@ -231,6 +233,8 @@ function loadAdminStats() {
     if(statSold) statSold.innerText = totalTickets;
     if(txBody) txBody.innerHTML = html || '<tr><td colspan="4">No sales recorded.</td></tr>';
 }
+
+
 /* ==========================================
    5. PASSWORD RECOVERY LOGIC
    ========================================== */
