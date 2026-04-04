@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Events | Forgot Password</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Nexus Events</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="tickets.html">Tickets</a>
+            <a href="venue.html">Venue</a>
+            <a href="contact.html">Contact</a>
+            <a href="admin.html">Admin</a>
+        </div>
+        <button onclick="togglePartyMode()" id="partyBtn" class="party-mode-btn">Party Mode: OFF</button>
+    </nav>
+
+    <section class="container" style="margin: 80px auto; max-width: 500px;">
+        <div class="blocky" style="padding: 40px; background: white;">
+            <h2 style="margin-bottom: 10px;">Reset Password</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 25px; font-weight: 600;">Enter your registered email to set a new password.</p>
+            
+            <form id="forgotForm">
+                <label style="display: block; font-weight: 700; margin-bottom: 5px;">Registered Email</label>
+                <input type="email" id="forgotEmail" placeholder="you@email.com" required style="padding: 15px; margin-bottom: 20px; width: 100%;">
+                
+                <label style="display: block; font-weight: 700; margin-bottom: 5px;">New Password</label>
+                <input type="password" id="newPass" placeholder="Enter new password" required style="padding: 15px; margin-bottom: 25px; width: 100%;">
+                
+                <button type="submit" class="btn-blocky purple" style="width: 100%;">Update Password</button>
+            </form>
+            
+            <div style="margin-top: 20px; text-align: center;">
+                <a href="index.html" style="color: var(--accent-purple); text-decoration: none; font-weight: 700; font-size: 0.9rem;">← Back to Login</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 40px 0;" class="container">
+            <span class="logo" style="background: var(--accent-red); font-size: 0.9rem; padding: 10px 20px; border-radius: 50px; border: 2px solid black;">Nexus Events · Vibrant Pop Nights</span>
+            <p style="font-size: 0.9rem; font-weight: 700;">© 2026 Nexus Events y BosskramAteru.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
