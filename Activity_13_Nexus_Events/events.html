@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nexus Events | Events</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Nexus Events</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="events.html" class="active">Events</a>
+            <a href="tickets.html">Tickets</a>
+            <a href="venue.html">Venue</a>
+            <a href="contact.html">Contact</a>
+            <a href="admin.html">Admin</a>
+        </div>
+        <button onclick="togglePartyMode()" id="partyBtn" class="party-mode-btn">Party Mode: OFF</button>
+    </nav>
+
+    <div class="container">
+        <h2 style="margin-bottom: 20px;">Upcoming Lineup</h2>
+        <div class="grid">
+            <div class="blocky"><h3>Pixel Parade</h3><p>Sat, Apr 12</p><button onclick="location.href='tickets.html?event=Pixel Parade'" class="btn-blocky purple" style="margin-top:15px;">Get Tickets</button></div>
+            <div class="blocky"><h3>Metro Market</h3><p>Fri, Apr 18</p><button onclick="location.href='tickets.html?event=Metro Market'" class="btn-blocky purple" style="margin-top:15px;">Get Tickets</button></div>
+            <div class="blocky"><h3>Neon Circuit</h3><p>Sun, Apr 27</p><button onclick="location.href='tickets.html?event=Neon Circuit'" class="btn-blocky purple" style="margin-top:15px;">Get Tickets</button></div>
+            <div class="blocky"><h3>Studio Rooftop</h3><p>Mon, May 05</p><button onclick="location.href='tickets.html?event=Studio Rooftop'" class="btn-blocky purple" style="margin-top:15px;">Get Tickets</button></div>
+            <div class="blocky"><h3>Nexus Noise</h3><p>Sat, May 12</p><button onclick="location.href='tickets.html?event=Nexus Noise'" class="btn-blocky purple" style="margin-top:15px;">Get Tickets</button></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="background: var(--accent-red); border: 2px solid black; padding: 8px 20px; border-radius: 50px; font-weight: 800;">Nexus Events • Vibrant Pop Nights</div>
+            <div style="font-size: 0.8rem; font-weight: 600;">© 2026 Nexus Events y BosskramAteru.</div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

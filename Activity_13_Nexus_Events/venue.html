@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nexus Events | Venue</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Nexus Events</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="tickets.html">Tickets</a>
+            <a href="venue.html" class="active">Venue</a>
+            <a href="contact.html">Contact</a>
+            <a href="admin.html">Admin</a>
+        </div>
+        <button onclick="togglePartyMode()" id="partyBtn" class="party-mode-btn">Party Mode: OFF</button>
+    </nav>
+
+    <div class="container">
+        
+        <section style="margin-bottom: 60px;">
+            <h1 style="margin-bottom: 30px;">The Venue</h1>
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; align-items: start;">
+                
+                <div class="blocky">
+                    <h3>Nexus Hall Complex</h3>
+                    <p style="margin: 15px 0; font-size: 0.9rem; line-height: 1.6;">
+                        Three stages, two rooftops, and a night market runway built for vibrant pop shows. 
+                        Every zone is connected for easy flow and fast access to food, art, and merch.
+                    </p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
+                        <span class="logo" style="font-size: 0.6rem; background: var(--accent-green);">Main Hall</span>
+                        <span class="logo" style="font-size: 0.6rem; background: var(--accent-green);">Rooftop</span>
+                        <span class="logo" style="font-size: 0.6rem; background: var(--accent-green);">Market Lane</span>
+                        <span class="logo" style="font-size: 0.6rem; background: var(--accent-green);">Creator Lounge</span>
+                    </div>
+                    <button class="btn-blocky red" style="width: auto; padding: 10px 25px;">See Seating</button>
+                </div>
+
+                <div class="blocky" style="background: white; padding: 20px;">
+                    <div style="border: 3px solid black; padding: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; height: 300px;">
+                        <div style="grid-row: span 2; background: var(--accent-green); border: 2px solid black; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8rem;">Main Hall</div>
+                        <div style="background: var(--accent-purple); border: 2px solid black; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 0.8rem;">Rooftop Stage</div>
+                        <div style="background: var(--accent-orange); border: 2px solid black; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8rem;">Creator Lounge</div>
+                        <div style="grid-column: span 2; background: var(--accent-red); border: 2px solid black; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 0.8rem;">Market Lane</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 60px;">
+            <h2 style="margin-bottom: 25px;">Amenities</h2>
+            <div class="grid">
+                <div class="blocky">
+                    <h4 style="color: var(--accent-purple);">Sound Lab Lounge</h4>
+                    <p style="font-size: 0.8rem; margin-top: 10px;">Recharge with ambient sets and low-light seating between performances.</p>
+                </div>
+                <div class="blocky">
+                    <h4 style="color: var(--accent-purple);">Food Capsule</h4>
+                    <p style="font-size: 0.8rem; margin-top: 10px;">Street chefs, fresh mocktails, and vegan-friendly pop bites.</p>
+                </div>
+                <div class="blocky">
+                    <h4 style="color: var(--accent-purple);">Merch Lab</h4>
+                    <p style="font-size: 0.8rem; margin-top: 10px;">Customize posters, stickers, and apparel on the spot.</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 80px;">
+            <h2 style="margin-bottom: 25px;">Tonight's Flow</h2>
+            <div class="blocky" style="padding: 0;">
+                <div style="display: flex; border-bottom: 2px solid black;">
+                    <div style="flex: 1; padding: 20px; border-right: 2px solid black;">
+                        <h3 style="font-size: 1.2rem;">6:00 PM</h3>
+                        <p style="font-size: 0.8rem;">Doors + Market Lane open</p>
+                    </div>
+                    <div style="flex: 1; padding: 20px; border-right: 2px solid black;">
+                        <h3 style="font-size: 1.2rem;">7:30 PM</h3>
+                        <p style="font-size: 0.8rem;">Rooftop stage warm-up sets</p>
+                    </div>
+                    <div style="flex: 1; padding: 20px;">
+                        <h3 style="font-size: 1.2rem;">9:00 PM</h3>
+                        <p style="font-size: 0.8rem;">Main Hall headliners</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+ <footer>
+        <div style="display: flex; justify-content: space-between; align-items: center;" class="container">
+            <span class="logo" style="background: var(--accent-red); font-size: 0.7rem;">Nexus Events · Vibrant Pop Nights</span>
+            <p style="font-size: 0.8rem;">© 2026 Nexus Events y BosskramAteru. All rights reserved.</p>
+        </div>
+    </footer>
+	
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Nexus Events | Receipt</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body style="background: var(--accent-purple);">
+    <div class="container" style="max-width: 500px; margin-top: 50px;">
+        <div class="blocky" style="text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🎟️</div>
+            <h2 style="text-transform: uppercase;">Order Confirmed!</h2>
+            <hr style="margin: 20px 0; border: 1px dashed black;">
+            
+            <div style="text-align: left; line-height: 2;">
+                <p><strong>Order ID:</strong> <span id="r-order">#00000</span></p>
+                <p><strong>Attendee:</strong> <span id="r-name">---</span></p>
+                <p><strong>Event:</strong> <span id="r-event">---</span></p>
+                <p><strong>Quantity:</strong> <span id="r-qty">0</span></p>
+                <h3 style="margin-top: 10px;">Total: $<span id="r-total">0.00</span></h3>
+            </div>
+
+            <hr style="margin: 20px 0; border: 1px dashed black;">
+            <p style="font-size: 0.8rem; margin-bottom: 20px;">Show this receipt at the Nexus Hall entrance.</p>
+            <button onclick="window.print()" class="btn-blocky">Print Receipt</button>
+            <a href="index.html" class="btn-blocky red" style="margin-top: 10px;">Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve data from SessionStorage
+        window.onload = function() {
+            const orderData = JSON.parse(sessionStorage.getItem('lastOrder'));
+            if(orderData) {
+                document.getElementById('r-order').innerText = '#' + Math.floor(Math.random() * 90000 + 10000);
+                document.getElementById('r-name').innerText = orderData.name;
+                document.getElementById('r-event').innerText = orderData.event;
+                document.getElementById('r-qty').innerText = orderData.qty;
+                document.getElementById('r-total').innerText = orderData.total;
+            } else {
+                window.location.href = "index.html"; // Redirect if no order exists
+            }
+        };
+    </script>
+</body>
+</html>

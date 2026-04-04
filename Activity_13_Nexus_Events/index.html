@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Events | Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Nexus Events</a>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a> 
+            <a href="events.html">Events</a>
+            <a href="tickets.html">Tickets</a>
+            <a href="venue.html">Venue</a>
+            <a href="contact.html">Contact</a>
+            <a href="admin.html">Admin</a>
+        </div>
+        <button onclick="togglePartyMode()" id="partyBtn" class="party-mode-btn">Party Mode: OFF</button>
+    </nav>
+
+    <div class="ticker-bar">
+        <marquee scrollamount="8">NEW DROP: NEXUS NOISE WEEKENDER · TICKETS LIVE · VENUE MAP UPDATED · JOIN THE VIBE</marquee>
+    </div>
+
+    <section class="container hero-split" style="margin-bottom: 80px; padding-top: 40px;">
+        <div class="hero-text">
+            <h1 style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 25px;">Where live energy, bold art, and magnetic people collide.</h1>
+            <p style="font-size: 1.2rem; font-weight: 600; margin-bottom: 40px;">Nexus Events is your headquarters for pop-forward concerts and night markets.</p>
+            <div style="display: flex; gap: 20px; margin-bottom: 40px;">
+                <button onclick="location.href='events.html'" class="btn-blocky purple" style="width: 200px;">Explore Events</button>
+                <button onclick="location.href='tickets.html'" class="btn-blocky red" style="width: 200px;">Get Tickets</button>
+            </div>
+        </div>
+        
+        <div class="blocky" style="background: white; width: 100%; max-width: 600px; padding: 40px; min-height: 280px; transform: rotate(0deg);">
+            <span class="date-badge" style="top: -15px; right: 20px; background: var(--accent-purple); color: white; padding: 6px 15px; font-weight: 800; border: 2px solid black; position: absolute;">ALL ACCESS</span>
+            <h2 style="margin-top: 15px; font-size: 2.2rem;">Next Up: Pixel Parade</h2>
+            <p style="font-weight: 800; color: #000; margin-bottom: 15px;">Saturday, April 12 · 7:00 PM</p>
+            <p style="font-size: 1rem; margin-bottom: 30px; line-height: 1.6;">The ultimate digital art and synth-pop crossover. Immersive lighting and local artist spotlights. Don't miss this launch event.</p>
+            <button class="btn-blocky purple" style="width: 100%;" onclick="location.href='tickets.html?event=Pixel Parade'">Reserve Seats</button>
+        </div>
+    </section>
+
+    <section class="container grid stats-grid" style="margin-bottom: 80px;">
+        <div class="blocky red" style="color:white; padding: 30px;"><h3>24+</h3><p>Curated nights per season</p></div>
+        <div class="blocky green" style="padding: 30px;"><h3>8K</h3><p>Average monthly guests</p></div>
+        <div class="blocky" style="padding: 30px; background: white;"><h3>3</h3><p>Signature venues</p></div>
+        <div class="blocky purple" style="color: white; padding: 30px;"><h3>100%</h3><p>Local artist spotlights</p></div>
+    </section>
+
+    <section class="container" style="margin-bottom: 80px;">
+        <h2 style="margin-bottom: 30px; font-size: 2.5rem;">Featured Events</h2>
+        <div class="grid">
+            <div class="blocky">
+                <span class="date-badge">Hot</span>
+                <h3>Neon Circuit Live</h3>
+                <p>Electro-pop night with synchronized LED choreography.</p>
+                <button class="btn-blocky" onclick="location.href='tickets.html?event=Neon Circuit Live'">See Details</button>
+            </div>
+
+            <div class="blocky">
+                <span class="date-badge" style="background: var(--accent-green);">New</span>
+                <h3>Studio Rooftop Sessions</h3>
+                <p>Creator meetups, sunset projections, and live illustrations.</p>
+                <button class="btn-blocky" onclick="location.href='tickets.html?event=Studio Rooftop Sessions'">See Details</button>
+            </div>
+
+            <div class="blocky">
+                <span class="date-badge" style="background: var(--accent-orange);">Limited</span>
+                <h3>Metro Market Nights</h3>
+                <p>Night market with street bites, pop-up makers, and DJs.</p>
+                <button class="btn-blocky" onclick="location.href='tickets.html?event=Metro Market Nights'">See Details</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" style="margin-bottom: 80px;">
+        <div class="blocky purple" style="padding: 50px;">
+            <h2 style="font-size: 2.5rem;">Build your own night.</h2>
+            <p style="font-size: 1.1rem; font-weight: 600;">Pick your event, unlock perks, and grab a vibe pack.</p>
+            <div style="display: flex; gap: 20px; margin-top: 30px;">
+                <button onclick="location.href='tickets.html'" class="btn-blocky" style="width: 200px; background: white;">Plan Tickets</button>
+                <button onclick="location.href='venue.html'" class="btn-blocky" style="width: 200px; background: white;">Explore Venue</button>
+            </div>
+        </div>
+    </section>
+
+   <section class="container" style="margin-bottom: 80px;">
+    <h2 style="margin-bottom: 30px; font-size: 2.5rem;">Account Access</h2>
+    <div class="grid" style="gap: 40px;">
+        <div class="blocky" style="padding: 40px;">
+            <h3>Log In</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 20px; font-weight: 600;">Welcome back. Jump into your saved events.</p>
+            <form id="loginForm">
+                <input type="email" id="loginEmail" placeholder="you@email.com" required style="padding: 15px; margin-bottom: 15px;">
+                <input type="password" id="loginPass" placeholder="Password" required style="padding: 15px; margin-bottom: 10px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 0.85rem; font-weight: 700;">
+                    <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                        <input type="checkbox" style="width: auto; margin: 0;"> Remember Me
+                    </label>
+                    <a href="#" style="color: var(--accent-purple); text-decoration: none;">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn-blocky purple">Log In</button>
+            </form>
+        </div>
+
+        <div class="blocky" style="padding: 40px;">
+            <h3>Register</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 20px; font-weight: 600;">Create your Nexus ID to unlock perks.</p>
+            <form id="registerForm">
+                <input type="text" id="regName" placeholder="Full Name" required style="padding: 15px; margin-bottom: 15px;">
+                <input type="email" id="regEmail" placeholder="you@email.com" required style="padding: 15px; margin-bottom: 15px;">
+                <input type="password" id="regPass" placeholder="Create Password" required style="padding: 15px; margin-bottom: 20px;">
+                <button type="submit" class="btn-blocky red">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="user-display" style="margin-top: 40px;">
+        </div>
+</section>
+
+    <footer>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 40px 0;" class="container">
+            <span class="logo" style="background: var(--accent-red); font-size: 0.9rem; padding: 10px 20px; border-radius: 50px; border: 2px solid black;">Nexus Events · Vibrant Pop Nights</span>
+            <p style="font-size: 0.9rem; font-weight: 700;">© 2026 Nexus Events y BosskramAteru. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

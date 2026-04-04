@@ -1,0 +1,252 @@
+/* 1. VARIABLES & RESET */
+:root {
+    /* Brand Colors */
+    --accent-purple: #9d3bff;
+    --accent-red: #ff4d4d;
+    --accent-green: #3ad3b1;
+    --accent-orange: #ff9100;
+    --off-white: #f0f0f0;
+    
+    /* Layout */
+    --border-thick: 2px solid #000;
+    --shadow-main: 5px 5px 0px #000;
+    --shadow-btn: 3px 3px 0px #000;
+    
+    /* Transitions */
+    --smooth: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto; /* Fixes the "not scrollable" issue */
+    background: linear-gradient(to right, #e8f1f2 0%, #dff2e1 100%);
+    font-family: 'Poppins', sans-serif;
+    color: #000;
+    transition: background var(--smooth), color var(--smooth);
+}
+
+/* 2. NAVIGATION & LOGO */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background: #fff;
+    border-bottom: var(--border-thick);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+footer { border-top: 2px solid black; padding: 40px 0; background: white; margin-top: 50px; }
+.logo {
+    background: var(--accent-green);
+    padding: 8px 15px;
+    border: var(--border-thick);
+    border-radius: 5px;
+    font-weight: 800;
+    text-decoration: none;
+    color: #000;
+}
+
+.nav-links {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 8px 18px;
+    border: var(--border-thick);
+    border-radius: 30px;
+    background: #fff;
+    transition: var(--smooth);
+}
+
+/* The "Orange Thing" - Active Page Fix */
+.nav-links a.active {
+    background: var(--accent-orange) !important;
+    box-shadow: var(--shadow-btn);
+}
+
+/* 3. CONTAINERS & GRIDS */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 5%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.hero-split {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+}
+
+/* 4. COMPONENTS (Cards & Buttons) */
+.blocky {
+    background: #fff;
+    border: var(--border-thick);
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    padding: 25px;
+    position: relative;
+    transition: transform 0.1s;
+}
+
+.btn-blocky {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: var(--border-thick);
+    border-radius: 8px;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-btn);
+    color: #000;
+    transition: 0.1s;
+}
+
+.btn-blocky:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+}
+
+/* Color Helpers */
+.purple { background: var(--accent-purple); color: #fff; }
+.red { background: var(--accent-red); }
+.green { background: var(--accent-green); }
+
+/* 5. FORM ELEMENTS */
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: var(--border-thick);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+/* 6. SOOTHING PARTY MODE */
+body.party-active {
+    background: #121214 !important; /* Calm Dark Grey/Black */
+    color: #e0e0e0;
+}
+
+body.party-active nav {
+    background: #1a1a1c;
+    border-color: #444;
+}
+
+body.party-active .blocky {
+    background: #222225;
+    border-color: #444;
+    box-shadow: 5px 5px 0px var(--accent-green); /* Glowing Green Shadow */
+}
+
+body.party-active .nav-links a {
+    background: #2a2a2d;
+    color: #bbb;
+    border-color: #444;
+}
+/* Ensure the body and html take up full height */
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    transition: background-color 0.4s ease;
+}
+
+/* Party Mode Global State */
+body.party-active {
+    background-color: #1a1a1a !important; /* Deep dark background */
+    color: #ffffff;
+}
+
+/* Remove white space from containers and sections */
+body.party-active .container, 
+body.party-active section,
+body.party-active .main-content {
+    background-color: transparent !important;
+}
+
+/* Optional: Adjust nav and footer for Party Mode */
+body.party-active nav {
+    background-color: #000000 !important;
+    border-bottom: 2px solid var(--accent-purple);
+}
+
+/* Ensure blocks remain visible but match the vibe */
+body.party-active .blocky {
+    background-color: #2d2d2d !important;
+    color: white;
+    border-color: var(--accent-purple) !important;
+}
+.party-mode-btn {
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: var(--border-thick);
+    font-weight: 800;
+    cursor: pointer;
+    background: #fff;
+    box-shadow: var(--shadow-btn);
+}
+
+/* 7. TICKER & MISC */
+.ticker-bar {
+    background: #000;
+    color: #fff;
+    padding: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.date-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--accent-orange);
+    padding: 4px 10px;
+    border: var(--border-thick);
+    font-size: 0.75rem;
+    font-weight: 800;
+    border-radius: 5px;
+}
+
+footer {
+    border-top: var(--border-thick);
+    padding: 30px 0;
+    margin-top: 50px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* 8. MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+    .hero-split {
+        grid-template-columns: 1fr;
+    }
+    .nav-links {
+        display: none; /* Consider a hamburger menu for mobile later */
+    }
+}

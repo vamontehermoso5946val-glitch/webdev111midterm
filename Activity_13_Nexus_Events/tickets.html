@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nexus Events | Tickets</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Nexus Events</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="tickets.html" class="active">Tickets</a>
+            <a href="venue.html">Venue</a>
+            <a href="contact.html">Contact</a>
+            <a href="admin.html">Admin</a>
+        </div>
+        <button onclick="togglePartyMode()" id="partyBtn" class="party-mode-btn">Party Mode: OFF</button>
+    </nav>
+
+    <div class="container" style="max-width: 600px;">
+        <h1 style="margin-bottom: 20px;">Grab a Vibe Pack</h1>
+        <div class="blocky">
+            <form id="purchaseForm">
+                <label>Attendee Name</label>
+                <input type="text" id="ticketName" placeholder="Full Name" required>
+                
+                <label>Select Event</label>
+                <select id="eventSelect" required>
+                    <option value="">Choose your night...</option>
+                    <option value="Pixel Parade" data-price="45">Pixel Parade - $45</option>
+                    <option value="Metro Market" data-price="20">Metro Market - $20</option>
+                    <option value="Neon Circuit" data-price="35">Neon Circuit - $35</option>
+                    <option value="Studio Rooftop" data-price="30">Studio Rooftop - $30</option>
+                    <option value="Nexus Noise" data-price="50">Nexus Noise Weekender - $50</option>
+                </select>
+
+                <label>Ticket Type</label>
+                <select id="ticketType" required>
+                    <option value="1">Standard Access (Base Price)</option>
+                    <option value="2">VIP Vibe Pack (Double Price)</option>
+                </select>
+
+                <label>Quantity</label>
+                <input type="number" id="ticketQty" min="1" max="10" value="1" required>
+
+                <button type="submit" class="btn-blocky green">Complete Purchase</button>
+            </form>
+        </div>
+    </div>
+
+ <footer>
+        <div style="display: flex; justify-content: space-between; align-items: center;" class="container">
+            <span class="logo" style="background: var(--accent-red); font-size: 0.7rem;">Nexus Events · Vibrant Pop Nights</span>
+            <p style="font-size: 0.8rem;">© 2026 Nexus Events y BosskramAteru. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
