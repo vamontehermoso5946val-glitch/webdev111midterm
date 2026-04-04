@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvet Crust Cakes | Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+    <a href="index.html" class="nav-item active">Velvet Crust Cakes</a>
+    <a href="bakery.html" class="nav-item">Bakery</a>
+    <a href="order.html" class="nav-item">Orders, Design, Pickup</a>
+    <a href="saved_orders.html" class="nav-item">My Orders</a>
+    <a href="info.html" class="nav-item">Information</a>
+</nav>
+
+    <section class="hero-section" style="height: 60vh; min-height: 400px;"> 
+        <div class="slideshow">
+            <img class="slide" src="https://images.unsplash.com/photo-1616541823729-00fe0aacd32c?w=1200" alt="Red Velvet Cake">
+            <img class="slide" src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?w=1200" alt="Berry Cake">
+            <img class="slide" src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=1200" alt="Chocolate Cake">
+        </div>
+
+        <div class="glass-card" style="max-width: 500px; padding: 30px;">
+            <h1 class="main-heading" style="font-size: 2.5rem;">Velvet Crust Cakes</h1>
+            <p>Experience the art of student-crafted baking.</p>
+            <div class="button-group" style="margin-top: 20px;">
+                <a href="order.html" class="cream-btn">Start an Order</a>
+                <a href="#about" class="cream-btn" style="background: transparent; border: 2px solid var(--accent-rose);">Our Story</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="container" style="padding: 60px 20px;">
+        <div class="glass-card" style="display: flex; align-items: center; gap: 40px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 300px;">
+                <h2 class="section-heading">Handcrafted Elegance</h2>
+                <p>Born in a student kitchen, Velvet Crust Cakes combines academic precision with a passion for flavor.</p>
+            </div>
+            <div style="flex: 1; min-width: 300px;">
+                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600" alt="Baker" style="width: 100%; border-radius: 15px;">
+            </div>
+        </div>
+    </section>
+
+    <section class="container" style="padding-bottom: 80px; text-align: center;">
+        <h2 class="section-heading">Today's Featured Treats</h2>
+        <div class="gallery">
+            
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=500" class="cake-img" alt="Signature Red Velvet">
+                <div class="card-content">
+                    <h3>Signature Red Velvet</h3>
+                    <p>Our classic masterpiece with cream cheese frosting.</p>
+                </div>
+            </div>
+
+            <div class="cake-card">
+                <img src="https://cdnnew.igp.com/f_auto,q_auto,t_pnopt12prodlp/products/p-berry-bliss-red-velvet-cake-half-kg--400816-m.jpg" class="cake-img" alt="Berry Bliss">
+                <div class="card-content">
+                    <h3>Berry Bliss</h3>
+                    <p>Fresh seasonal berries layered with vanilla bean sponge.</p>
+                </div>
+            </div>
+
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500" class="cake-img" alt="Dark Cocoa Crust">
+                <div class="card-content">
+                    <h3>Dark Cocoa Crust</h3>
+                    <p>Rich 70% dark chocolate for the true connoisseur.</p>
+                </div>
+            </div>
+
+        </div>
+        <a href="bakery.html" class="cream-btn" style="margin-top: 40px;">View Full Menu</a>
+    </section>
+
+    <footer style="background: white; padding: 40px 20px; text-align: center; border-top: 1px solid #eee;">
+        <p>&copy; 2026 Velvet Crust Cakes | BSEMC 1-Y2-1</p>
+    </footer>
+
+    <script>
+        let slideIndex = 0;
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1; }    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 4000); 
+        }
+        showSlides();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders | Velvet Crust Cakes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ensuring the background image shows up on this specific page */
+        body {
+            background-image: url('https://images.unsplash.com/photo-1516054144867-5be381e594d2?w=1600');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* New styling for the Cancel Button */
+        .btn-cancel {
+            background-color: #fff1f0; /* Soft light red */
+            color: #ff4d4f; /* Modern danger red */
+            border: 1px solid #ffa39e;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-cancel:hover {
+            background-color: #ff4d4f;
+            color: white;
+            border-color: #ff4d4f;
+            box-shadow: 0 2px 8px rgba(255, 77, 79, 0.3);
+        }
+
+        /* Styling for the table rows */
+        .order-table-row {
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+
+        .order-table-row:hover {
+            background-color: rgba(250, 250, 250, 0.8);
+        }
+
+        .status-pill {
+            background: #e6f7ff;
+            color: #1890ff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Making the table more readable over the background */
+        table {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-item">Velvet Crust Cakes</a>
+        <a href="bakery.html" class="nav-item">Bakery</a>
+        <a href="order.html" class="nav-item">Orders, Design, Pickup</a>
+        <a href="saved_orders.html" class="nav-item active">My Orders</a>
+        <a href="info.html" class="nav-item">Information</a>
+    </nav>
+
+    <div class="glass-card" style="margin: 40px; padding: 20px;">
+        <h2 style="margin-bottom: 20px; color: #333;">Order History</h2>
+        <table style="width:100%; text-align:left; border-collapse:collapse;">
+            <thead>
+                <tr style="border-bottom: 2px solid #eee; color: #666;">
+                    <th style="padding: 12px;">ID</th>
+                    <th>Date & Time</th> 
+                    <th>Method</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="historyList"></tbody>
+        </table>
+    </div>
+
+    <script>
+        function loadOrders() {
+            let list = document.getElementById('historyList');
+            let orders = JSON.parse(localStorage.getItem('myOrders')) || [];
+            
+            if (orders.length === 0) { 
+                // Colspan is 7 to cover all columns including the new Time column
+                list.innerHTML = "<tr><td colspan='7' style='padding:50px; text-align:center; color: #999;'>No orders found.</td></tr>"; 
+                return; 
+            }
+
+            list.innerHTML = orders.map((o, index) => `
+                <tr class="order-table-row">
+                    <td style="padding: 15px;"><b>${o.id}</b></td>
+                    <td style="font-size: 0.85rem; color: #666; white-space: nowrap;">${o.date}</td> 
+                    <td>${o.method}</td>
+                    <td style="color: #555; font-size: 0.9rem;">${o.items}</td>
+                    <td style="font-weight: bold; color: #d63384;">${o.total}</td>
+                    <td><span class="status-pill">${o.status}</span></td>
+                    <td>
+                        <button class="btn-cancel" onclick="cancelOrder(${index})">
+                            Cancel Order
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function cancelOrder(index) {
+            if (confirm("Are you sure you want to cancel this order? This action cannot be undone.")) {
+                let orders = JSON.parse(localStorage.getItem('myOrders'));
+                orders.splice(index, 1);
+                localStorage.setItem('myOrders', JSON.stringify(orders));
+                loadOrders(); 
+            }
+        }
+        
+        loadOrders();
+    </script>
+</body>
+</html>

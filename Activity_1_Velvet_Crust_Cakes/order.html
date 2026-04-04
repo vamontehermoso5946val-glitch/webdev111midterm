@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Online | Velvet Crust Cakes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .cake-option { background: #f9f9f9; border: 1px solid #ddd; padding: 12px; margin-bottom: 10px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; transition: 0.3s; }
+        .cake-option.selected { background: #fff0f5; border-color: #ffb6c1; }
+        .qty-box { width: 60px; padding: 5px; border-radius: 4px; border: 1px solid #aaa; text-align: center; }
+        #total-container { background: #fff3f3; border: 2px dashed #ffb6c1; padding: 15px; text-align: center; margin: 20px 0; border-radius: 10px; }
+        .input-field { width: 100%; padding: 10px; margin: 5px 0 15px; border-radius: 5px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+       <a href="index.html" class="nav-item">Velvet Crust Cakes</a>
+        <a href="bakery.html" class="nav-item">Bakery</a>
+        <a href="order.html" class="nav-item active">Orders, Design, Pickup</a>
+        <a href="saved_orders.html" class="nav-item">My Orders</a>
+        <a href="info.html" class="nav-item">Information</a>
+    </nav>
+
+    <div class="glass-card" style="max-width: 600px; margin: 40px auto; padding: 20px;">
+        <h2 class="section-heading">Place Your Order</h2>
+        <form id="orderForm">
+            <label><b>Customer Name:</b></label>
+            <input type="text" id="custName" class="input-field" placeholder="Full Name">
+
+            <label><b>Order Method:</b></label>
+            <select id="orderMethod" class="input-field" onchange="toggleAddress()">
+                <option value="Delivery">Delivery</option>
+                <option value="Pickup">Store Pickup</option>
+            </select>
+
+            <div id="addressSection">
+                <label><b>Delivery Address:</b></label>
+                <textarea id="custAddress" class="input-field" rows="2" placeholder="Street, City, Zip Code"></textarea>
+            </div>
+
+            <label><b>Select Your Cakes:</b></label>
+            <div class="cake-option"><label><input type="checkbox" class="cake-check" value="45.00" onclick="updateTotal()"> Signature Red Velvet ($45.00)</label><input type="number" class="qty-box" value="1" min="1" oninput="updateTotal()"></div>
+            <div class="cake-option"><label><input type="checkbox" class="cake-check" value="38.00" onclick="updateTotal()"> Lemon Zest Cloud ($38.00)</label><input type="number" class="qty-box" value="1" min="1" oninput="updateTotal()"></div>
+            <div class="cake-option"><label><input type="checkbox" class="cake-check" value="42.00" onclick="updateTotal()"> Dark Cocoa Crust ($42.00)</label><input type="number" class="qty-box" value="1" min="1" oninput="updateTotal()"></div>
+            <div class="cake-option"><label><input type="checkbox" class="cake-check" value="6.50" onclick="updateTotal()"> Rainbow Slice ($6.50)</label><input type="number" class="qty-box" value="1" min="1" oninput="updateTotal()"></div>
+            <div class="cake-option"><label><input type="checkbox" class="cake-check" value="24.00" onclick="updateTotal()"> Cupcake Dozen ($24.00)</label><input type="number" class="qty-box" value="1" min="1" oninput="updateTotal()"></div>
+            <div class="cake-option"><label><input type="checkbox" class="cake-check" value="35.00" onclick="updateTotal()"> Vanilla Bean Dream ($35.00)</label><input type="number" class="qty-box" value="1" min="1" oninput="updateTotal()"></div>
+
+            <div id="total-container"><strong>Total: <span id="finalPrice">$0.00</span></strong></div>
+            <button type="button" class="btn-order" style="width:100%" onclick="submitMsg()">Confirm Order</button>
+        </form>
+    </div>
+
+    <script>
+        function updateTotal() {
+            let checks = document.getElementsByClassName('cake-check'), qtys = document.getElementsByClassName('qty-box'), total = 0;
+            for (let i = 0; i < checks.length; i++) {
+                if (checks[i].checked) {
+                    total += parseFloat(checks[i].value) * (parseInt(qtys[i].value) || 1);
+                    checks[i].closest('.cake-option').classList.add('selected');
+                } else { checks[i].closest('.cake-option').classList.remove('selected'); }
+            }
+            document.getElementById('finalPrice').innerHTML = "$" + total.toFixed(2);
+        }
+
+        function toggleAddress() {
+            let isPickup = document.getElementById('orderMethod').value === "Pickup";
+            let addressBox = document.getElementById('custAddress');
+            addressBox.disabled = isPickup;
+            document.getElementById('addressSection').style.opacity = isPickup ? "0.5" : "1";
+            if(isPickup) addressBox.value = ""; // Clear address if switching to pickup
+        }
+
+        function submitMsg() {
+            let name = document.getElementById('custName').value.trim();
+            let method = document.getElementById('orderMethod').value;
+            let address = document.getElementById('custAddress').value.trim();
+            let total = document.getElementById('finalPrice').innerHTML;
+
+            // VALIDATION 1: Name and Cake selection
+            if (!name || total === "$0.00") { 
+                alert("Please enter your name and select at least one cake!"); 
+                return; // STOP execution
+            }
+
+            // VALIDATION 2: Address check for delivery
+            if (method === "Delivery" && !address) {
+                alert("Please enter a delivery address!");
+                return; // STOP execution
+            }
+
+            // If it passes validation, collect items
+            let items = [], checks = document.getElementsByClassName('cake-check'), qtys = document.getElementsByClassName('qty-box');
+            for (let i = 0; i < checks.length; i++) {
+                if (checks[i].checked) {
+                    let cake = checks[i].parentElement.innerText.split('$')[0].trim();
+                    items.push(`${cake} (x${qtys[i].value})`);
+                }
+            }
+
+            let order = { 
+                id: "#VC-"+Math.floor(1000+Math.random()*9000), 
+                date: new Date().toLocaleDateString(), 
+                items: items.join(", "), 
+                total: total, 
+                method: method, 
+                status: "Processing" 
+            };
+
+            let history = JSON.parse(localStorage.getItem('myOrders')) || [];
+            history.push(order);
+            localStorage.setItem('myOrders', JSON.stringify(history));
+
+            // Move to receipt
+            window.location.href = `receipt.html?name=${encodeURIComponent(name)}&total=${encodeURIComponent(total)}&method=${method}`;
+        }
+    </script>
+</body>
+</html>
