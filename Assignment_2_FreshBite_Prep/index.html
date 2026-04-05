@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshBite Prep | Home</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Keeping your custom Hero and Scroll logic here for quick edits */
+        .hero {
+            background: linear-gradient(rgba(111, 66, 193, 0.8), rgba(69, 39, 160, 0.9)), 
+                        url('https://images.unsplash.com/photo-1610450937660-93667184d093?auto=format&fit=crop&w=1200');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 5%;
+            border-radius: 30px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 30px rgba(111, 66, 193, 0.3);
+        }
+
+        .hero h1 { 
+            color: var(--accent-gold); 
+            border: none; 
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-tag {
+            background: var(--accent-gold);
+            color: #333;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .wide-scroll {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding: 20px 10px 40px 10px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .wide-scroll .card {
+            min-width: 300px;
+            scroll-snap-align: start;
+            flex-shrink: 0;
+        }
+
+        .wide-scroll::-webkit-scrollbar { height: 10px; }
+        .wide-scroll::-webkit-scrollbar-thumb {
+            background: var(--primary-purple);
+            border-radius: 10px;
+        }
+
+        /* Essential for the Zoom effect to stay inside the card */
+        .img-container {
+            overflow: hidden;
+            width: 100%;
+            height: 220px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="drawer-overlay" class="drawer-overlay" onclick="toggleDrawer()"></div>
+
+    <nav>
+        <div class="logo">FRESHBITE PREP</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="meals.html">Meals</a></li>
+            <li><a href="nutrients.html">Nutrients</a></li> 
+            <li><a href="billings.html">Billing</a></li>
+            <li><a href="plans.html">Plans</a></li>
+            <li><a href="#" id="login-link" onclick="toggleDrawer()">Login</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        
+        <header class="hero">
+            <span class="hero-tag">🔥 Most Ordered of the Day</span>
+            <h1>Ube Halaya Cake</h1>
+            <p>Experience the rich, creamy tradition of our signature purple yam masterpiece.</p>
+            <p class="price" style="color: var(--accent-gold); font-size: 1.5rem;">Only ₱120 / slice</p>
+        </header>
+
+        <h2>Trending Filipino Bakes</h2>
+        
+        <div class="wide-scroll">
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://www.foxyfolksy.com/wp-content/uploads/2022/10/ube-cake.jpg" alt="Ube">
+                </div>
+                <div class="card-info">
+                    <h3>Ube Halaya Cake</h3>
+                    <p class="price">₱120 / slice</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://cdn.bakedbree.com/uploads/2024/06/Pandesal-Recipe-A_BB_Pandesal_Recipe_Feature_1-768x1152.jpg" alt="Pandesal">
+                </div>
+                <div class="card-info">
+                    <h3>Premium Pandesal</h3>
+                    <p class="price">₱50 / box</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://jocyls.com/wp-content/uploads/2023/04/jocyls-cassava-cake-recipe.png.webp" alt="Cassava">
+                </div>
+                <div class="card-info">
+                    <h3>Special Cassava Cake</h3>
+                    <p class="price">₱85 / slice</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://amiablefoods.com/wp-content/uploads/buko-pie-hero-2-768x1024.jpg" alt="Buko Pie">
+                </div>
+                <div class="card-info">
+                    <h3>Classic Buko Pie</h3>
+                    <p class="price">₱250 / whole</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://wildflourtogo.com/cdn/shop/products/CheeseEnsaimadagrab_e66e815b-c565-4509-a94e-2222941fcbfd_590x.jpg?v=1632465830" alt="Ensaimada">
+                </div>
+                <div class="card-info">
+                    <h3>Cheesy Ensaymada</h3>
+                    <p class="price">₱45 / pc</p>
+                </div>
+            </div>
+        </div>
+
+        <section id="quick-nutrients">
+            <h2 style="color: var(--primary-purple); font-size: 1.4rem;">Daily Specials Info</h2>
+            <p style="font-size: 0.9rem; color: #666;">Our bakes are prepared fresh every morning in Malabon. Check the Nutrients tab for macro-tracking!</p>
+        </section>
+        
+    </main>
+
+    <div id="side-drawer">
+        <span class="close-btn" onclick="toggleDrawer()">×</span>
+        
+        <div id="login-ui-content">
+            <h2 style="color: var(--primary-purple)">Account Login</h2>
+            <form onsubmit="handleLogin(event)">
+                <input type="text" id="login-user" placeholder="Username" required>
+                <input type="password" id="login-pass" placeholder="Password" required>
+                <button type="submit" class="btn">Sign In</button>
+            </form>
+            <p style="margin-top: 25px; font-size: 0.9rem; text-align: center;">
+                New customer? <br>
+                <a href="register.html" class="reg-link">Create an Account</a>
+            </p>
+        </div>
+
+        <div id="logout-ui-content" style="display:none; text-align: center;">
+            <h2 style="color: var(--primary-purple)">My Account</h2>
+            <div style="margin: 20px 0; padding: 15px; background: var(--light-purple); border-radius: 10px;">
+                <p>Welcome back to <strong>FreshBite!</strong></p>
+            </div>
+            <button onclick="handleLogout()" class="btn btn-logout">Logout</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

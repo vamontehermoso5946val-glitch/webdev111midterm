@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshBite | Login</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific styling for the standalone login card */
+        .login-box {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(111, 66, 193, 0.2);
+            border: 1px solid rgba(111, 66, 193, 0.1);
+        }
+
+        .login-box h2 {
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .login-box p {
+            margin-bottom: 25px;
+        }
+
+        /* Center the back link for a cleaner look */
+        .back-home {
+            display: inline-block;
+            margin-top: 20px;
+            color: #999;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .back-home:hover {
+            color: var(--primary-purple);
+        }
+    </style>
+</head>
+<body style="background: var(--primary-purple); min-height: 100vh; display: flex; align-items: center; justify-content: center; margin: 0;">
+
+    <div class="login-box">
+        <h2 style="color: var(--primary-purple)">Welcome Back</h2>
+        <p style="color: #666;">Enter your details to access your account</p>
+        
+        <form onsubmit="handleLogin(event)">
+            <input type="text" id="login-user" placeholder="Username" required>
+            <input type="password" id="login-pass" placeholder="Password" required>
+            
+            <button type="submit" class="btn">Log In</button>
+        </form>
+
+        <p style="margin-top: 20px; font-size: 0.9rem;">
+            No account yet? <a href="register.html" class="reg-link">Register here</a>
+        </p>
+        
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
+        
+        <a href="index.html" class="back-home">
+            ← Back to Home
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

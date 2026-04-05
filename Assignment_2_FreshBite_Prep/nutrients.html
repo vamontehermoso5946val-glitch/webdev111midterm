@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshBite Prep | Nutrients</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific layout for the Nutrient cards */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card h3 {
+            color: var(--dark-purple);
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .card p {
+            margin: 8px 0;
+            font-size: 0.95rem;
+        }
+
+        strong {
+            color: var(--primary-purple);
+        }
+
+        /* Styling for the new Price Table */
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .price-table th {
+            background-color: var(--primary-purple);
+            color: white;
+            text-align: left;
+            padding: 15px;
+        }
+
+        .price-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .price-table tr:hover {
+            background-color: var(--light-purple);
+        }
+
+        .price-tag {
+            font-weight: bold;
+            color: var(--dark-purple);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="drawer-overlay" class="drawer-overlay" onclick="toggleDrawer()"></div>
+
+    <nav>
+        <div class="logo">FRESHBITE PREP</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="meals.html">Meals</a></li>
+            <li><a href="nutrients.html">Nutrients</a></li> 
+            <li><a href="billings.html">Billing</a></li>
+            <li><a href="plans.html">Plans</a></li>
+            <li><a href="#" id="login-link" onclick="toggleDrawer()">Login</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <h1>Nutritional Breakdown</h1>
+        <p>A student-made guide to what's inside our Filipino favorites. All values are per serving.</p>
+        
+        <div class="gallery">
+            <div class="card" style="border-top: 5px solid var(--primary-purple);">
+                <div class="card-info">
+                    <h3>Ube Halaya Cake</h3>
+                    <p><strong>Calories:</strong> 320 kcal</p>
+                    <p><strong>Sugar:</strong> 18g</p>
+                    <p><strong>Carbs:</strong> 45g</p>
+                </div>
+            </div>
+
+            <div class="card" style="border-top: 5px solid var(--dark-purple);">
+                <div class="card-info">
+                    <h3>Special Cassava Cake</h3>
+                    <p><strong>Calories:</strong> 280 kcal</p>
+                    <p><strong>Sugar:</strong> 12g</p>
+                    <p><strong>Fiber:</strong> 4g</p>
+                </div>
+            </div>
+
+            <div class="card" style="border-top: 5px solid var(--accent-gold);">
+                <div class="card-info">
+                    <h3>Premium Pandesal</h3>
+                    <p><strong>Calories:</strong> 150 kcal</p>
+                    <p><strong>Protein:</strong> 5g</p>
+                    <p><strong>Carbs:</strong> 28g</p>
+                </div>
+            </div>
+
+            <div class="card" style="border-top: 5px solid var(--primary-purple);">
+                <div class="card-info">
+                    <h3>Classic Buko Pie</h3>
+                    <p><strong>Calories:</strong> 310 kcal</p>
+                    <p><strong>Fat:</strong> 14g</p>
+                    <p><strong>Carbs:</strong> 42g</p>
+                </div>
+            </div>
+
+            <div class="card" style="border-top: 5px solid var(--accent-gold);">
+                <div class="card-info">
+                    <h3>Cheesy Ensaymada</h3>
+                    <p><strong>Calories:</strong> 220 kcal</p>
+                    <p><strong>Fat:</strong> 12g</p>
+                    <p><strong>Protein:</strong> 4g</p>
+                </div>
+            </div>
+
+            <div class="card" style="border-top: 5px solid #a55eea;">
+                <div class="card-info">
+                    <h3>Purple Cabbage Salad</h3>
+                    <p><strong>Calories:</strong> 140 kcal</p>
+                    <p><strong>Fiber:</strong> 6g</p>
+                    <p><strong>Vitamins:</strong> A, C, K</p>
+                </div>
+            </div>
+
+            <div class="card" style="border-top: 5px solid var(--primary-purple);">
+                <div class="card-info">
+                    <h3>Ube Pandesal (Filled)</h3>
+                    <p><strong>Calories:</strong> 190 kcal</p>
+                    <p><strong>Sugar:</strong> 9g</p>
+                    <p><strong>Protein:</strong> 4g</p>
+                </div>
+            </div>
+
+            <div class="card" style="border-top: 5px solid #20bf6b;"> 
+                <div class="card-info">
+                    <h3>Harvest Bowl</h3>
+                    <p><strong>Calories:</strong> 380 kcal</p>
+                    <p><strong>Protein:</strong> 18g</p>
+                    <p><strong>Carbs:</strong> 52g</p>
+                </div>
+            </div>
+        </div>
+
+        <section id="price-list" style="margin-top: 50px;">
+            <h2 style="color: var(--primary-purple)">Menu Price List</h2>
+            <p style="font-size: 0.9rem; color: #666;">Affordable fuel for your grind.</p>
+            
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Ube Halaya Cake</td><td class="price-tag">₱120 / slice</td></tr>
+                    <tr><td>Special Cassava Cake</td><td class="price-tag">₱85 / slice</td></tr>
+                    <tr><td>Premium Pandesal</td><td class="price-tag">₱50 / box</td></tr>
+                    <tr><td>Classic Buko Pie</td><td class="price-tag">₱250 / whole</td></tr>
+                    <tr><td>Cheesy Ensaymada</td><td class="price-tag">₱45 / pc</td></tr>
+                    <tr><td>Purple Cabbage Salad</td><td class="price-tag">₱140 / bowl</td></tr>
+                    <tr><td>Ube Pandesal (6pcs)</td><td class="price-tag">₱90 / set</td></tr>
+                    <tr><td>Harvest Bowl</td><td class="price-tag">₱180 / bowl</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="quick-nutrients" style="margin-top: 40px; background: #fff; padding: 20px; border-radius: 15px;">
+            <h2 style="color: var(--primary-purple)">Why Track?</h2>
+            <p>We believe in balanced eating. Our "Ube" treats provide that soul-satisfying sweetness, while our "Harvest" options ensure you get your daily greens and protein.</p>
+        </section>
+    </main>
+
+    <div id="side-drawer">
+        <span class="close-btn" onclick="toggleDrawer()">×</span>
+        <div id="login-ui-content">
+            <h2 style="color: var(--primary-purple)">Account Login</h2>
+            <form onsubmit="handleLogin(event)">
+                <input type="text" id="login-user" placeholder="Username" required>
+                <input type="password" id="login-pass" placeholder="Password" required>
+                <button type="submit" class="btn">Sign In</button>
+            </form>
+        </div>
+        <div id="logout-ui-content" style="display:none; text-align: center;">
+            <h2 style="color: var(--primary-purple)">My Account</h2>
+            <div style="margin: 20px 0; padding: 15px; background: var(--light-purple); border-radius: 10px;">
+                <p>Fueling your studies, one bite at a time!</p>
+            </div>
+            <button onclick="handleLogout()" class="btn btn-logout">Logout</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

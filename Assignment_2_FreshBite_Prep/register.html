@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshBite | Join Us</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific styling for the registration card */
+        .register-container { 
+            max-width: 400px; 
+            margin: 80px auto; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 20px 40px rgba(111, 66, 193, 0.2); 
+            text-align: center; 
+            border: 1px solid rgba(111, 66, 193, 0.1);
+        }
+
+        .register-container h2 {
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .register-container p {
+            margin-bottom: 25px;
+            color: #666;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-top: 25px;
+            color: #999;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .back-home:hover {
+            color: var(--primary-purple);
+        }
+    </style>
+</head>
+<body style="background: var(--primary-purple); min-height: 100vh; display: flex; align-items: center; justify-content: center; margin: 0;">
+
+    <div class="register-container">
+        <h2 style="color: var(--primary-purple)">Create Account</h2>
+        <p>Register to start ordering your favorite bakes!</p>
+        
+        <form onsubmit="handleRegister(event)">
+            <input type="text" id="reg-user" placeholder="Choose Username" required>
+            <input type="password" id="reg-pass" placeholder="Choose Password" required>
+            
+            <button type="submit" class="btn">Register Now</button>
+        </form>
+        
+        <p style="margin-top: 20px; font-size: 0.9rem;">
+            Already have an account? 
+            <a href="index.html" class="reg-link">Login here</a>
+        </p>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
+        
+        <a href="index.html" class="back-home">
+            ← Back to Home
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
