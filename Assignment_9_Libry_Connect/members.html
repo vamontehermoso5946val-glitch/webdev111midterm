@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LibryConnect | Members</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="top-nav">
+        <div class="logo-small">LibryConnect</div>
+        <div class="nav-links">
+            <a href="index.html"><button class="vintage-btn">Home</button></a>
+            <a href="members.html"><button class="vintage-btn">Members</button></a>
+            <a href="loan.html"><button class="vintage-btn">Loans</button></a>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <aside class="info-panel">
+            <div class="stat-box">
+                <h4>Total Members</h4>
+                <p id="memberCountDisplay">3</p>
+            </div>
+            <div class="stat-box">
+                <h4>New This Month</h4>
+                <p>12</p>
+            </div>
+            <div class="side-promo">
+                <div class="promo-img"></div>
+            </div>
+        </aside>
+
+        <section class="gallery">
+            <div class="stat-box" style="background: #151515; border-left: none; border: 1px solid #2a2a2a; padding: 30px; border-radius: 15px; margin-bottom: 40px;">
+                <h2 style="margin-top: 0; color: #f2e8cf; font-family: serif; letter-spacing: 1px;">Apply as a Member</h2>
+                <div class="search-container" style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px;">
+                    <input type="text" id="memberNameInput" placeholder="Your Name" 
+                           style="width: 100%; border-radius: 8px; background: #1a1512; color: #fff; border: 1px solid #3d3d3d; padding: 15px; font-size: 1rem;">
+                    <button class="loan-action-btn" onclick="saveMember()" style="padding: 15px; font-size: 1.1rem; letter-spacing: 2px;">Request</button>
+                </div>
+            </div>
+
+            <h2>Library Community</h2>
+            <div class="books-display" id="membersGrid">
+                <div class="card">
+                    <div class="cover-placeholder blue" style="height: 100px; border-radius: 50%; width: 100px; margin: 0 auto 15px;"></div>
+                    <h4>Vince</h4>
+                    <span class="tag">Student ID: 2025-001</span>
+                    <p style="font-size: 0.8rem; color: #888;">Top Reader of March</p>
+					<button class="loan-action-btn">View Profile</button>
+                </div>
+
+                <div class="card">
+                    <div class="cover-placeholder green" style="height: 100px; border-radius: 50%; width: 100px; margin: 0 auto 15px;"></div>
+                    <h4>Sarah Jenkins</h4>
+                    <span class="tag">Student ID: 2025-042</span>
+                    <button class="loan-action-btn">View Profile</button>
+                </div>
+
+                <div class="card">
+                    <div class="cover-placeholder purple" style="height: 100px; border-radius: 50%; width: 100px; margin: 0 auto 15px;"></div>
+                    <h4>Mark Rivera</h4>
+                    <span class="tag">Student ID: 2025-089</span>
+                    <button class="loan-action-btn">View Profile</button>
+                </div>
+                </div>
+        </section>
+    </div>
+
+    <div class="stat-box overdue-alert">
+        <h4>Clock</h4>
+        <p id="clockDisplay">00:00:00 AM</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

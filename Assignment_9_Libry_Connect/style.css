@@ -1,0 +1,272 @@
+/* --- GLOBAL STYLES & LAYOUT --- */
+* { box-sizing: border-box; }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #0f0f0f;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* --- NAVIGATION --- */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    background: #1a1512;
+    padding: 15px 50px;
+    align-items: center;
+    border-bottom: 1px solid #2a2a2a;
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+}
+
+.logo-small { 
+    color: #d4a373; 
+    font-weight: bold; 
+    font-size: 1.4rem; 
+    letter-spacing: 1px;
+    text-transform: lowercase;
+}
+
+/* --- VINTAGE LIBRARY CARD BUTTONS --- */
+.vintage-btn {
+    background: #f2e8cf;
+    color: #3d3d3d;
+    border: 1px solid #bc6c25;
+    padding: 8px 18px;
+    margin-left: 12px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px #8b5e34;
+    transition: all 0.2s ease;
+}
+
+.vintage-btn:hover {
+    background: #fff9eb;
+    transform: translateY(-2px);
+    box-shadow: 5px 5px 0px #8b5e34;
+}
+
+/* --- HERO & SEARCH UI --- */
+.hero-banner {
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1500&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content h1 { font-size: 3.5rem; margin: 0; font-weight: 800; color: #fff; }
+.hero-content p { color: #d4a373; letter-spacing: 4px; font-weight: bold; margin-bottom: 20px; }
+
+.search-container { 
+    display: flex; 
+    justify-content: center; 
+    margin-top: 25px;
+    position: relative;
+    z-index: 10;
+}
+
+#bookSearch {
+    padding: 14px 20px;
+    width: 350px;
+    border-radius: 5px 0 0 5px;
+    border: 2px solid #8b5e34;
+    background: #fff;
+    color: #333;
+    font-size: 1rem;
+    outline: none;
+}
+
+.go-btn {
+    padding: 14px 25px;
+    background: #8b5e34;
+    color: white;
+    border: 2px solid #8b5e34;
+    border-radius: 0 5px 5px 0;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+/* --- PAGE WRAPPER & LOAN LAYOUT --- */
+.wrapper {
+    display: flex;
+    padding: 50px 80px;
+    gap: 50px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.info-panel { flex: 1; }
+.gallery { flex: 3; }
+
+/* --- LOAN HISTORY TABLE --- */
+.loan-history-section {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #161616;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.history-table th {
+    background: #1a1512;
+    color: #d4a373;
+    text-align: left;
+    padding: 15px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.history-table td {
+    padding: 15px;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 0.9rem;
+}
+
+.status-returned {
+    color: #4ade80; /* Green text from your screenshot */
+    font-weight: bold;
+}
+
+/* --- BOOK-SHAPED UI CARDS --- */
+.books-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 40px;
+}
+
+.card {
+    background: #1a1512;
+    position: relative;
+    aspect-ratio: 2 / 3; 
+    border: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 4px 15px 15px 4px; 
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 2px 0 0 #3d3d3d, 5px 0 0 #0f0f0f, 10px 12px 25px rgba(0,0,0,0.5);
+}
+
+.card:hover {
+    transform: translateY(-10px) rotate(-1.5deg);
+    box-shadow: 3px 0 0 #d4a373, 7px 0 0 #0f0f0f, 15px 20px 35px rgba(0,0,0,0.6);
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18px; 
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.4), rgba(255,255,255,0.05));
+    border-right: 1px solid rgba(255,255,255,0.1);
+    z-index: 5;
+}
+
+.book-cover {
+    width: 100%;
+    height: 60%; 
+    object-fit: cover;
+    display: block;
+    mask-image: linear-gradient(to right, transparent 0, black 18px, black 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 18px, black 100%);
+}
+
+.card-content {
+    padding: 12px 12px 12px 28px; 
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #1a1512;
+}
+
+.card-content h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #f2e8cf;
+    font-family: 'Georgia', serif;
+    line-height: 1.2;
+}
+
+/* --- ACTION BUTTONS --- */
+.loan-action-btn {
+    background: #8b5e34;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+.return-btn {
+    background: #e63946; /* Red return button */
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+}
+
+/* --- STAT BOXES --- */
+.stat-box {
+    background: #1a1512;
+    border-left: 4px solid #bc6c25;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 4px 8px 8px 4px;
+}
+
+.stat-box h4 {
+    margin: 0;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #d4a373;
+    letter-spacing: 1px;
+}
+
+.stat-box p {
+    margin: 5px 0 0 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* --- CLOCK --- */
+.overdue-alert {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #1a1512;
+    border: 2px solid #bc6c25;
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: 6px 6px 0px #8b5e34;
+    z-index: 2000;
+}

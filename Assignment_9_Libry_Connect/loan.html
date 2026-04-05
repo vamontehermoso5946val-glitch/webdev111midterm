@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LibryConnect | My Loans</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="top-nav">
+        <div class="logo-small">libryconnect</div>
+        <div class="nav-links">
+            <a href="index.html"><button class="vintage-btn">Home</button></a>
+            <a href="members.html"><button class="vintage-btn">Members</button></a>
+            <a href="loan.html"><button class="vintage-btn">Loans</button></a>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <aside class="info-panel">
+            <div class="stat-box">
+                <h4>Active Loans</h4>
+                <p id="activeLoansCount">0</p> 
+            </div>
+            <div class="stat-box">
+                <h4>Return Deadline</h4>
+                <p>April 12, 2026</p>
+            </div>
+            
+            <div class="stat-box">
+                <h4>Total Books Lent</h4>
+                <p id="booksLentStat">None</p>
+            </div>
+        </aside>
+
+        <section class="gallery">
+            <h2>My Current Loans</h2>
+            <div class="books-display" id="currentLoansGrid">
+            </div>
+            
+            <h2 style="margin-top: 50px; opacity: 0.5;">Loan History</h2>
+            <table style="width: 100%; border-collapse: collapse; background: #1a1a1a; border-radius: 10px; overflow: hidden;">
+                <thead>
+                    <tr style="text-align: left; background: #252525; color: #d4a373;">
+                        <th style="padding: 15px;">Book Title</th>
+                        <th style="padding: 15px;">Borrowed Date</th>
+                        <th style="padding: 15px;">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                    </tbody>
+            </table>
+        </section>
+    </div>
+
+    <div class="stat-box overdue-alert">
+        <h4>Clock</h4>
+        <p id="clockDisplay">00:00:00 AM</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

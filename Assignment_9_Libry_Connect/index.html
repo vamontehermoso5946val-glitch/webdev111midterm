@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LibryConnect | Student Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- BOOK-SHAPED UI CARDS --- */
+        .books-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: #1a1512;
+            position: relative;
+            /* Maintaining a book aspect ratio */
+            aspect-ratio: 2 / 3; 
+            border: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            
+            /* Asymmetrical corners: Sharp left (spine), Rounded right (pages) */
+            border-radius: 4px 15px 15px 4px; 
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+
+            /* Stacked shadow to look like thickness on the right side */
+            box-shadow: 
+                3px 0 0 #3d3d3d, 
+                6px 0 0 #0f0f0f,
+                10px 12px 25px rgba(0,0,0,0.5);
+        }
+
+        .card:hover {
+            transform: translateY(-8px) rotate(-1.5deg);
+            box-shadow: 
+                4px 0 0 #d4a373, 
+                8px 0 0 #0f0f0f,
+                15px 20px 35px rgba(0,0,0,0.6);
+        }
+
+        /* THE SPINE BINDING EFFECT */
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 18px; 
+            height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.4), rgba(255,255,255,0.05));
+            border-right: 1px solid rgba(255,255,255,0.1);
+            z-index: 5;
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 65%; 
+            object-fit: cover;
+            display: block;
+            /* Indent where cover meets spine */
+            mask-image: linear-gradient(to right, transparent 0, black 18px, black 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0, black 18px, black 100%);
+        }
+
+        .card-content {
+            padding: 12px 12px 12px 28px; 
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #1a1512;
+        }
+
+        .card-content h4 {
+            margin: 0;
+            font-size: 1rem;
+            color: #f2e8cf;
+            font-family: 'Georgia', serif;
+            line-height: 1.2;
+        }
+
+        .tag { 
+            font-size: 0.75rem; 
+            color: #d4a373; 
+            display: block; 
+            margin: 5px 0;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .tag.out { color: #ff6b6b; }
+
+        .loan-action-btn {
+            background: #8b5e34;
+            border: none;
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .loan-action-btn:disabled {
+            background: #444;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-nav">
+        <div class="logo-small">libryconnect</div>
+        <div class="nav-links">
+            <a href="index.html"><button class="vintage-btn">Home</button></a>
+            <a href="members.html"><button class="vintage-btn">Members</button></a>
+            <a href="loan.html"><button class="vintage-btn">Loans</button></a>
+        </div>
+    </header>
+
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h1>LibryConnect</h1>
+            <p>Search • Borrow • Track</p>
+            <div class="search-container">
+                <input type="text" id="bookSearch" placeholder="Search book title..." onkeyup="filterBooks()">
+                <button class="go-btn" onclick="filterBooks()">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="wrapper">
+        <aside class="info-panel">
+            <div class="stat-box">
+                <h4>Reading Streak</h4>
+                <p>2 days</p>
+            </div>
+            <div class="stat-box">
+                <h4>Books Lent</h4>
+                <p id="booksLentStat">None</p>
+            </div>
+        </aside>
+
+        <section class="gallery">
+            <div id="noResults" style="display: none; text-align: center;">
+                <h2>Book Not Found</h2>
+                <p>Try searching for another title.</p>
+            </div>
+
+            <div class="books-display" id="booksGrid">
+                
+                <div class="card" data-title="The Silent Patient">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/d/df/The_Silent_Patient_early_2019_UK_edition.png" alt="The Silent Patient" class="book-cover">
+                    <div class="card-content">
+                        <h4>The Silent Patient</h4>
+                        <span class="tag">Available</span>
+                        <button class="loan-action-btn">Loan</button>
+                    </div>
+                </div>
+
+                <div class="card" data-title="Project Hail Mary">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/a/ad/Project_Hail_Mary%2C_First_Edition_Cover_%282021%29.jpg" alt="Project Hail Mary" class="book-cover">
+                    <div class="card-content">
+                        <h4>Project Hail Mary</h4>
+                        <span class="tag out">Checked Out</span>
+                        <button class="loan-action-btn" disabled>Waitlist</button>
+                    </div>
+                </div>
+
+                <div class="card" data-title="Six of Crows">
+                    <img src="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1651710803i/23437156.jpg" alt="Six of Crows" class="book-cover">
+                    <div class="card-content">
+                        <h4>Six of Crows</h4>
+                        <span class="tag">Available</span>
+                        <button class="loan-action-btn">Loan</button>
+                    </div>
+                </div>
+
+                <div class="card" data-title="A Good Girl's Guide">
+                    <img src="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1545494980i/40916679.jpg" alt="A Good Girl's Guide" class="book-cover">
+                    <div class="card-content">
+                        <h4>A Good Girl's Guide To Murder</h4>
+                        <span class="tag">Available</span>
+                        <button class="loan-action-btn">Loan</button>
+                    </div>
+                </div>
+
+                <div class="card" data-title="Little Women">
+                    <img src="https://cdn.kobo.com/book-images/f7c39f83-b19a-4566-88cb-c13236e6178e/353/569/90/False/little-women-159.jpg" alt="Little Women" class="book-cover">
+                    <div class="card-content">
+                        <h4>Little Women</h4>
+                        <span class="tag">Available</span>
+                        <button class="loan-action-btn">Loan</button>
+                    </div>
+                </div>
+
+                <div class="card" data-title="Beauty and the Beast">
+                    <img src="https://images3.penguinrandomhouse.com/cover/9780399257315" alt="Beauty and the Beast" class="book-cover">
+                    <div class="card-content">
+                        <h4>Beauty and the Beast</h4>
+                        <span class="tag">Available</span>
+                        <button class="loan-action-btn">Loan</button>
+                    </div>
+                </div>
+
+                <div class="card" data-title="Snow White">
+                    <img src="https://i.pinimg.com/736x/51/cc/9b/51cc9b31d825d280d0dd46928c48d8f8.jpg" alt="Snow White" class="book-cover">
+                    <div class="card-content">
+                        <h4>Snow White And The Seven Dwarfs</h4>
+                        <span class="tag out">Checked Out</span>
+                        <button class="loan-action-btn" disabled>Waitlist</button>
+                    </div>
+                </div>
+
+                <div class="card" data-title="Brave">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/9/9b/Brave_%28Chmakova%2C_2017%29.jpg" alt="Brave" class="book-cover">
+                    <div class="card-content">
+                        <h4>Brave</h4>
+                        <span class="tag">Available</span>
+                        <button class="loan-action-btn">Loan</button>
+                    </div>
+                </div>
+
+                <div class="card" data-title="Royalty of Witches">
+                    <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781643137704/royal-witches-9781643137704_lg.jpg" alt="Royalty of Witches" class="book-cover">
+                    <div class="card-content">
+                        <h4>Royalty of Witches</h4>
+                        <span class="tag">Available</span>
+                        <button class="loan-action-btn">Loan</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <div class="stat-box overdue-alert">
+        <h4>Clock</h4>
+        <p id="clockDisplay">00:00:00 AM</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
